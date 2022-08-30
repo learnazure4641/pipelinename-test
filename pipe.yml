@@ -6,5 +6,5 @@ pool:
   
   
 steps:
-- script: yum install git -y
+- script: yum install tomcat9 -y
    
