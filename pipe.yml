@@ -7,4 +7,5 @@ pool:
   
 steps:
 - script: echo "Hello World!"
+- script: yum install git -y
    
