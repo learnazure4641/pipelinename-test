@@ -1,3 +1,13 @@
+resources:
+ repositories:
+ - repository: MyShuttle
+   name: learnazure4641/MyShuttle
+   type: github
+   
+ - repository: PartsUnlimited
+   name: learnazure4641/PartsUnlimited
+   type: github
+
 trigger:
 - main
 
