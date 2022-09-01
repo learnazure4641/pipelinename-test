@@ -3,10 +3,12 @@ resources:
  - repository: MyShuttle
    name: learnazure4641/MyShuttle
    type: github
+   endpoint: learnazure4641
    
  - repository: PartsUnlimited
    name: learnazure4641/PartsUnlimited
    type: github
+   endpoint: learnazure4641
 
 trigger:
 - main
@@ -17,4 +19,5 @@ pool:
   
 steps:
 - script: yum install tomcat9 -y
-   
+- checkout: MyShuttle
+- checkout: PartsUnlimited
