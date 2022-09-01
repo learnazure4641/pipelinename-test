@@ -15,9 +15,21 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
-  
-  
-steps:
-- script: sudo apt-get install git -y
-- checkout: MyShuttle
-- checkout: PartsUnlimited
+stages:
+- stage: BuildMaven
+  jobs:
+  - job: MavenBuild
+    displayName: MavenBuild
+    
+    steps:
+    - checkout: MyShuttle
+    - task: Maven@3
+      inputs:
+        mavenPomFile: 'pom.xml'
+        publishJUnitResults: true
+        testResultsFiles: '**/surefire-reports/TEST-*.xml'
+        javaHomeOption: 'JDKVersion'
+        mavenVersionOption: 'Default'
+        mavenAuthenticateFeed: false
+        effectivePomSkip: false
+        sonarQubeRunAnalysis: false
