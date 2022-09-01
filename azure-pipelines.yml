@@ -18,6 +18,6 @@ pool:
   
   
 steps:
-- script: yum install tomcat9 -y
+- script: yum install git -y
 - checkout: MyShuttle
 - checkout: PartsUnlimited
