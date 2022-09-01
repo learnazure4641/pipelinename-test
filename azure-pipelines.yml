@@ -13,12 +13,13 @@ resources:
 trigger:
 - main
 
-pool:
-  vmImage: ubuntu-latest
+
 stages:
 - stage: BuildMaven
   jobs:
   - job: MavenBuild
+    pool:
+      vmImage: ubuntu-latest
     displayName: MavenBuild
     
     steps:
@@ -32,3 +33,23 @@ stages:
         jdkVersionOption: '1.8'
         mavenVersionOption: 'Default'
         mavenOptions: '-Xmx3072m'
+- stage: BuildDOTNET
+  jobs:
+  - job: Builddotnet
+    pool:
+      vmImage: 'windows-2019'
+    displayName: PartsUnlimited
+    steps:
+      - checkout: PartsUnlimited
+      - task: NuGetToolInstaller@1
+
+      - task: NuGetCommand@2
+        inputs:
+          command: 'restore'
+          restoreSolution: '**/*.sln'
+      - task: VSBuild@1
+        inputs:
+          solution: '**\*.sln'
+          msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
+          platform: 'Any CPU'
+          configuration: 'Release'
