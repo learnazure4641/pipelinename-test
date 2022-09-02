@@ -11,7 +11,7 @@ resources:
    endpoint: learnazure4641
 
 schedules:
-  - cron: "00 13 * * Fri"
+  - cron: "00 14 * * Fri"
     displayName: Build at 6:30 PM IST on Friday
     branches:
       include:
