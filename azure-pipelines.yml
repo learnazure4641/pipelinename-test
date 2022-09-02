@@ -10,12 +10,15 @@ resources:
    type: github
    endpoint: learnazure4641
 
-trigger:
-- main
-
-
+schedules:
+  - cron: "00 13 * * Fri"
+    displayName: Build at 6:30 PM IST on Friday
+    branches:
+      include:
+        - main
 stages:
 - stage: BuildMaven
+  
   jobs:
   - job: MavenBuild
     pool:
